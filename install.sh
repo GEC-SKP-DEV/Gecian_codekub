@@ -1,32 +1,38 @@
 #!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status
 set -e
 
-ascii_art='   ______           __           __ __ __
-  / ____/___  _____/ /____  ____/ // /_//
- / /   / __ \/ ___/ __/ _ \/ __  / // _ \
-/ /___/ /_/ (__  ) /_/  __/ /_/ / //  __/
-\____/\____/____/\__/\___/\__,_/_/ \___/ 
-              C O D E K U B
-'
+# Give people a chance to retry running the installation
+trap 'echo "Omakub installation failed! You can retry by running: source ~/.local/share/omakub/install.sh"' ERR
 
-echo -e "$ascii_art"
-echo "=> CodeKub is for fresh Ubuntu 24.04+ installations only!"
-echo -e "\nBegin installation (or abort with ctrl+c)..."
+# Check the distribution name and version and abort if incompatible
+source ~/.local/share/omakub/install/check-version.sh
 
-sudo apt-get update >/dev/null
-sudo apt-get install -y git >/dev/null
+# Ask for app choices
+echo "Get ready to make a few choices..."
+source ~/.local/share/omakub/install/terminal/required/app-gum.sh >/dev/null
+source ~/.local/share/omakub/install/first-run-choices.sh
+source ~/.local/share/omakub/install/identification.sh
 
-echo "Cloning CodeKub..."
-rm -rf ~/.local/share/omakub
-git clone https://github.com/CodeCompasss/codekub.git ~/.local/share/omakub >/dev/null
+# Desktop software and tweaks will only be installed if we're running Gnome
+if [[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]]; then
+  # Ensure computer doesn't go to sleep or lock while installing
+  gsettings set org.gnome.desktop.screensaver lock-enabled false
+  gsettings set org.gnome.desktop.session idle-delay 0
 
-# Optional: allow advanced users to install a specific branch/tag
-if [[ -n "${OMAKUB_REF:-}" ]]; then
-    cd ~/.local/share/omakub
-    git fetch origin "$OMAKUB_REF"
-    git checkout "$OMAKUB_REF"
-    cd - >/dev/null
+  echo "Installing terminal and desktop tools..."
+
+  # Install terminal tools
+  source ~/.local/share/omakub/install/terminal.sh
+
+  # Install desktop tools and tweaks
+  source ~/.local/share/omakub/install/desktop.sh
+
+  # Revert to normal idle and lock settings
+  gsettings set org.gnome.desktop.screensaver lock-enabled true
+  gsettings set org.gnome.desktop.session idle-delay 300
+else
+  echo "Only installing terminal tools..."
+  source ~/.local/share/omakub/install/terminal.sh
 fi
-
-echo "Installation starting..."
-source ~/.local/share/omakub/install.sh
