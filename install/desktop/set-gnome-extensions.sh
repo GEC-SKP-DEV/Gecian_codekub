@@ -64,9 +64,12 @@ gsettings set org.gnome.shell.extensions.arcmenu default-menu-view 0 || true
 # ------------------------------------
 # Configure Dash to Panel (TOP)
 # ------------------------------------
-gsettings set org.gnome.shell.extensions.dash-to-panel panel-position 'TOP' || true
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-position 'BOTTEM' || true
 gsettings set org.gnome.shell.extensions.dash-to-panel panel-size 32 || true
-gsettings set org.gnome.shell.extensions.dash-to-panel show-apps-icon true || true
+gsettings set org.gnome.shell.extensions.dash-to-panel show-apps-icon false || true
+gsettings get org.gnome.shell.extensions.dash-to-panel show-activities-button false || true
+gsettings get org.gnome.shell.extensions.dash-to-panel show-apps-button  false|| true
+
 
 # ------------------------------------
 # Configure TopHat (clean panel)
