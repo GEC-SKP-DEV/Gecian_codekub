@@ -21,7 +21,7 @@ fi
 gnome-extensions disable tiling-assistant@ubuntu.com || true
 gnome-extensions disable ubuntu-appindicators@ubuntu.com || true
 gnome-extensions disable ubuntu-dock@ubuntu.com || true
-gnome-extensions disable ding@rastersoft.com || true
+gnome-extensions enable ding@rastersoft.com
 
 # ------------------------------------
 # Install required extensions

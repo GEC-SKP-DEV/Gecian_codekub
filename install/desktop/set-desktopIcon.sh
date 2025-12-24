@@ -2,18 +2,14 @@
 
 # Apps you want on the Desktop
 apps=(
-  "Alacritty.desktop"
   "Neovim.desktop"
-  "pinta_pinta.desktop"
   "Activity.desktop"
-  "Docker.desktop"
   "Omakub.desktop"
   "org.gnome.Nautilus.desktop"
   "UserGuide.desktop"
   "CodeCompass.desktop"
   "CSEStarterGuide.desktop"
-  "DevSetup.desktop"
-  "Repeto.desktop"
+
 )
 
 # Where .desktop files live
@@ -33,6 +29,7 @@ for app in "${apps[@]}"; do
       echo "Adding $app to Desktop"
       cp "$dir/$app" "$DESKTOP/"
       chmod +x "$DESKTOP/$app"
+      gio set "$DESKTOP/$app" metadata::trusted true
       break
     fi
   done
