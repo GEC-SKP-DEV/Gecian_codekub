@@ -1,3 +1,5 @@
 #!/bin/bash
 
-for script in ~/.local/share/omakub/applications/*.sh; do source $script; done
+find ~/.local/share/omakub/applications -type f -name "*.sh" | while read -r script; do
+  source "$script"
+done
