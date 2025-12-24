@@ -2,25 +2,14 @@
 
 # Favorite apps for dock
 apps=(
-	"google-chrome.desktop"
-	"Alacritty.desktop"
-	"Neovim.desktop"
-	"code.desktop"
-	"WhatsApp.desktop"
-	"signal-desktop.desktop"
-	"Zoom.desktop"
-	"spotify.desktop"
-	"steam.desktop"
-	"pinta_pinta.desktop"
-	"md.obsidian.Obsidian.desktop"
-	"Activity.desktop"
-	"Docker.desktop"
-	"Omakub.desktop"
-	"1password.desktop"
-	"org.gnome.Settings.desktop"
-	"org.gnome.Nautilus.desktop"
-	"localsend_app.desktop"
+  "org.gnome.Nautilus.desktop"        # Files – foundational, quick access
+  "google-chrome.desktop"             # Primary browser (very frequent)
+  "code.desktop"                      # Main work tool
+  "md.obsidian.Obsidian.desktop"      # Notes / thinking
+  "WhatsApp.desktop"                  # Communication
+  "Omakub.desktop"                    # System / utility
 )
+
 
 # Array to hold installed favorite apps
 installed_apps=()
