@@ -1,36 +1,53 @@
 #!/bin/bash
+set -e
 
-sudo apt install -y gnome-shell-extension-manager gir1.2-gtop-2.0 gir1.2-clutter-1.0
+# ------------------------------------
+# Dependencies
+# ------------------------------------
+sudo apt update -y
+sudo apt install -y \
+  gnome-shell-extension-manager \
+  gir1.2-gtop-2.0 \
+  gir1.2-clutter-1.0
+
 pipx install gnome-extensions-cli --system-site-packages
 
-# Turn off default Ubuntu extensions
-gnome-extensions disable tiling-assistant@ubuntu.com
-gnome-extensions disable ubuntu-appindicators@ubuntu.com
-gnome-extensions disable ubuntu-dock@ubuntu.com
-gnome-extensions disable ding@rastersoft.com
+# ------------------------------------
+# Disable Ubuntu defaults that conflict
+# ------------------------------------
+gnome-extensions disable tiling-assistant@ubuntu.com || true
+gnome-extensions disable ubuntu-appindicators@ubuntu.com || true
+gnome-extensions disable ubuntu-dock@ubuntu.com || true
+gnome-extensions disable ding@rastersoft.com || true
 
-# Pause to assure user is ready to accept confirmations
-gum confirm "To install Gnome extensions, you need to accept some confirmations. Ready?"
+# ------------------------------------
+# User confirmation
+# ------------------------------------
+gum confirm "Install and configure GNOME extensions now?" || exit 0
 
-# Install new extensions
+# ------------------------------------
+# Install required extensions
+# ------------------------------------
+gext install add-to-desktop@tommimon.github.com
+gext install arcmenu@arcmenu.com
+gext install caffeine@patapon.info
+gext install clipboard-indicator@tudmotu.com
+gext install dash-to-panel@jderose9.github.com
+gext install screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com
 gext install tactile@lundal.io
-gext install just-perfection-desktop@just-perfection
-gext install blur-my-shell@aunetx
-gext install space-bar@luchrioh
-gext install undecorate@sun.wxg@gmail.com
 gext install tophat@fflewddur.github.io
-gext install AlphabeticalAppGrid@stuarthayhurst
 
-# Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/just-perfection-desktop\@just-perfection/schemas/org.gnome.shell.extensions.just-perfection.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+# ------------------------------------
+# Compile schemas (needed for gsettings)
+# ------------------------------------
+SCHEMA_DST="/usr/share/glib-2.0/schemas"
 
-# Configure Tactile
+sudo cp ~/.local/share/gnome-shell/extensions/*/schemas/*.gschema.xml "$SCHEMA_DST" 2>/dev/null || true
+sudo glib-compile-schemas "$SCHEMA_DST"
+
+# ------------------------------------
+# Configure Tactile (tiling)
+# ------------------------------------
 gsettings set org.gnome.shell.extensions.tactile col-0 1
 gsettings set org.gnome.shell.extensions.tactile col-1 2
 gsettings set org.gnome.shell.extensions.tactile col-2 1
@@ -39,33 +56,24 @@ gsettings set org.gnome.shell.extensions.tactile row-0 1
 gsettings set org.gnome.shell.extensions.tactile row-1 1
 gsettings set org.gnome.shell.extensions.tactile gap-size 32
 
-# Configure Just Perfection
-gsettings set org.gnome.shell.extensions.just-perfection animation 2
-gsettings set org.gnome.shell.extensions.just-perfection dash-app-running true
-gsettings set org.gnome.shell.extensions.just-perfection workspace true
-gsettings set org.gnome.shell.extensions.just-perfection workspace-popup false
+# ------------------------------------
+# Configure ArcMenu
+# Enterprise layout by default
+# ------------------------------------
+gsettings set org.gnome.shell.extensions.arcmenu menu-layout 'enterprise'
+gsettings set org.gnome.shell.extensions.arcmenu menu-button-icon 'start-here-symbolic'
+gsettings set org.gnome.shell.extensions.arcmenu default-menu-view 0
 
-# Configure Blur My Shell
-gsettings set org.gnome.shell.extensions.blur-my-shell.appfolder blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.lockscreen blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.screenshot blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.window-list blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.panel blur false
-gsettings set org.gnome.shell.extensions.blur-my-shell.overview blur true
-gsettings set org.gnome.shell.extensions.blur-my-shell.overview pipeline 'pipeline_default'
-gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock blur true
-gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock brightness 0.6
-gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock sigma 30
-gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock static-blur true
-gsettings set org.gnome.shell.extensions.blur-my-shell.dash-to-dock style-dash-to-dock 0
+# ------------------------------------
+# Configure Dash to Panel (minimal)
+# ------------------------------------
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-position 'BOTTOM'
+gsettings set org.gnome.shell.extensions.dash-to-panel panel-size 32
+gsettings set org.gnome.shell.extensions.dash-to-panel show-apps-icon true
 
-# Configure Space Bar
-gsettings set org.gnome.shell.extensions.space-bar.behavior smart-workspace-names false
-gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-activate-workspace-shortcuts false
-gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-workspace-shortcuts true
-gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
-
-# Configure TopHat
+# ------------------------------------
+# Configure TopHat (clean panel)
+# ------------------------------------
 gsettings set org.gnome.shell.extensions.tophat show-icons false
 gsettings set org.gnome.shell.extensions.tophat show-cpu false
 gsettings set org.gnome.shell.extensions.tophat show-disk false
@@ -73,5 +81,16 @@ gsettings set org.gnome.shell.extensions.tophat show-mem false
 gsettings set org.gnome.shell.extensions.tophat show-fs false
 gsettings set org.gnome.shell.extensions.tophat network-usage-unit bits
 
-# Configure AlphabeticalAppGrid
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
+# ------------------------------------
+# Enable everything explicitly
+# ------------------------------------
+gnome-extensions enable add-to-desktop@tommimon.github.com
+gnome-extensions enable arcmenu@arcmenu.com
+gnome-extensions enable caffeine@patapon.info
+gnome-extensions enable clipboard-indicator@tudmotu.com
+gnome-extensions enable dash-to-panel@jderose9.github.com
+gnome-extensions enable screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com
+gnome-extensions enable tactile@lundal.io
+gnome-extensions enable tophat@fflewddur.github.io
+
+echo "✅ GNOME extensions installed and configured successfully"
