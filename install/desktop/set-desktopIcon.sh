@@ -9,6 +9,7 @@ apps=(
   "UserGuide.desktop"
   "CodeCompass.desktop"
   "CSEStarterGuide.desktop"
+  "RayyanCodingSchool.desktop"
 
 )
 

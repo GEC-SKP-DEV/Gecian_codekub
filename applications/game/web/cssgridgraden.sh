@@ -3,7 +3,7 @@ cat <<EOF >~/.local/share/applications/CSSGridGarden.desktop
 Name=CSS Grid Garden
 Comment=Learn CSS Grid with a fun gardening game
 Exec=xdg-open https://cssgridgarden.com/
-Icon=/home/$USER/.local/share/omakub/applications/icons/cssgridgarden.png
+Icon=/home/$USER/.local/share/omakub/applications/icons/cssgridgraden.png
 Terminal=false
 Type=Application
 Categories=Game;Web;
