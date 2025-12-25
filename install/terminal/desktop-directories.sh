@@ -1,3 +1,5 @@
+mkdir -p "$HOME/.local/share/desktop-directories"
+
 cat <<EOF > ~/.local/share/desktop-directories/codecompass.directory
 [Desktop Entry]
 Type=Directory

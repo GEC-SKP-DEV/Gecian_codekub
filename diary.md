@@ -66,3 +66,6 @@ moved signal to optional
 
 if sudo is misse dhte nsta fail 
 sudo snap install ghostty --classic
+
+i moved teh gum file that reboot to zsh file 
+zsh file install anitigen if he does not have it it will nto work 
