@@ -1,21 +1,70 @@
-# codekub (fork of omarkub)
 
-curl -sSL https://raw.githubusercontent.com/CodeCompasss/codekub/refs/heads/dev/boot.sh| bash
 
-Turn a fresh Ubuntu installation into a fully-configured, beautiful, and modern web development system by running a single command. That's the one-line pitch for Omakub. No need to write bespoke configs for every essential tool just to get started or to be up on all the latest command-line tools. Omakub is an opinionated take on what Linux can be at its best.
+# Codekub
 
-Watch the introduction video and read more at [omakub.org](https://omakub.org).
+*A beginner-friendly fork of Omakub for Computer Science students*
 
-## Contributing to the documentation
+![Demo GIF](video/output.gif)
 
-Please help us improve Omakub's documentation on the [basecamp/omakub-site repository](https://github.com/basecamp/omakub-site).
+```bash
+curl -sSL https://raw.githubusercontent.com/CodeCompasss/codekub/dev/boot.sh | bash
+```
+
+**Codekub** is a fork of **Omakub**, reimagined specifically for **Computer Science beginners** and early-stage developers.
+
+Its goal is simple:
+👉 turn a fresh Ubuntu installation into a **fully configured, modern, and beginner-friendly development environment** using a single command — **while clearly explaining what’s happening and why**.
+
+---
+
+## What makes Codekub different?
+
+While Omakub is an opinionated, production-ready Linux setup for experienced developers, **Codekub focuses on learning**.
+
+Codekub is designed for:
+
+* 🎓 **CSE students**
+* 🧑‍💻 **Programming beginners**
+* 🚀 Anyone learning development tools from scratch
+
+### Codekub emphasizes:
+
+* Clear explanations of tools and configurations
+* Beginner-oriented defaults
+* Practical learning over hidden magic
+* Modern web and software development essentials
+* A clean, beautiful Linux experience without overwhelm
+
+Instead of just installing tools, **Codekub helps you understand them**.
+
+---
+
+## What does Codekub do?
+
+With one command, Codekub:
+
+* Sets up a modern Ubuntu development environment
+* Installs essential programming tools and languages
+* Configures the terminal, shell, and editor
+* Applies a clean and productive UI
+* Explains key concepts along the way
+
+No need to manually configure everything or guess best practices — Codekub provides a guided starting point.
+
+---
+
+## Based on Omakub
+
+Codekub is built on top of the excellent work done in **Omakub**, an opinionated Linux setup created to showcase what Linux can be at its best.
+
+Learn more about the original project at:
+👉 [https://omakub.org](https://omakub.org)
+
+---
+
+
 
 ## License
 
-Omakub is released under the [MIT License](https://opensource.org/licenses/MIT).
+Codekub inherits the open-source spirit of Omakub and is released under the **License**.
 
-## Extras
-
-While omakub is purposed to be an opinionated take, the open source community offers alternative customization, add-ons, extras, that you can use to adjust, replace or enrich your experience.
-
-[⇒ Browse the omakub extensions.](EXTENSIONS.md)

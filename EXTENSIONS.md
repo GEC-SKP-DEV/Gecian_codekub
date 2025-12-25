@@ -2,3 +2,4 @@
 
 Select a dark and light theme of your choice to be applied automatically when switching the gnome light/dark mode.
 
+the fiel is  in install/desktop/set-gnome-extenon 
