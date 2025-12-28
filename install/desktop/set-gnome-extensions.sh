@@ -32,7 +32,7 @@ gext install clipboard-indicator@tudmotu.com || true
 gext install dash-to-panel@jderose9.github.com || true
 gext install screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com || true
 gext install tactile@lundal.io || true
-gext install tophat@fflewddur.github.io || true
+gext install Vitals@CoreCoding.com || true
 
 # ------------------------------------
 # Compile schemas (needed for gsettings)
@@ -74,11 +74,11 @@ gsettings get org.gnome.shell.extensions.dash-to-panel show-apps-button  false||
 # ------------------------------------
 # Configure TopHat (clean panel)
 # ------------------------------------
-gsettings set org.gnome.shell.extensions.tophat show-icons true || true
-gsettings set org.gnome.shell.extensions.tophat show-cpu true || true
-gsettings set org.gnome.shell.extensions.tophat show-disk true || true
-gsettings set org.gnome.shell.extensions.tophat show-mem true || true
-gsettings set org.gnome.shell.extensions.tophat show-fs true || true
+# gsettings set org.gnome.shell.extensions.tophat show-icons true || true
+# gsettings set org.gnome.shell.extensions.tophat show-cpu true || true
+# gsettings set org.gnome.shell.extensions.tophat show-disk true || true
+# gsettings set org.gnome.shell.extensions.tophat show-mem true || true
+# gsettings set org.gnome.shell.extensions.tophat show-fs true || true
 
 # gsettings set org.gnome.shell.extensions.tophat network-usage-unit 'bits' || true
 
@@ -92,6 +92,6 @@ gnome-extensions enable clipboard-indicator@tudmotu.com || true
 gnome-extensions enable dash-to-panel@jderose9.github.com || true
 gnome-extensions enable screenshot-window-sizer@gnome-shell-extensions.gcampax.github.com || true
 gnome-extensions enable tactile@lundal.io || true
-gnome-extensions enable tophat@fflewddur.github.io || true
+gnome-extensions enable Vitals@CoreCoding.com  || true
 
 echo "✅ GNOME extensions installed and configured (fully automated)"
