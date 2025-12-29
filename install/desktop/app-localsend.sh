@@ -4,7 +4,8 @@ set -e
 # Skip if already installed
 if command -v localsend >/dev/null 2>&1; then
   echo "✅ LocalSend already installed. Skipping."
-  exit 0
+  return 0 2>/dev/null || true
+
 fi
 
 echo "⬇️ Installing LocalSend..."
