@@ -1,13 +1,16 @@
 criteria 
-cross platform 
+cross platform (mac os)
 ease of use 
 
 langage :  node python java c/c++ php 
 
 unique 
 gecian hub (https://gecian-hub.netlify.app/)
-fish | zsh | bash 
-terminal ghosstty vs alacirtty vs kitty 
+sgpa calc app
+exceldraw
+
+fish | zsh ✓| bash 
+ghosstty ✓ vs alacirtty vs kitty 
 
 remove tool as 
 
