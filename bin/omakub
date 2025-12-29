@@ -1,4 +1,26 @@
 #!/bin/bash
 
-source $OMAKUB_PATH/bin/omakub-sub/header.sh
-source $OMAKUB_PATH/bin/omakub-sub/menu.sh
+# ---- Logging helper ----
+log() {
+    echo "[OMAKUB] $1"
+}
+
+log "Starting to source Omakub scripts..."
+
+# ---- Source header.sh ----
+if [ -f "$OMAKUB_PATH/bin/omakub-sub/header.sh" ]; then
+    source "$OMAKUB_PATH/bin/omakub-sub/header.sh"
+    log "Sourced header.sh successfully"
+else
+    log "Warning: header.sh not found at $OMAKUB_PATH/bin/omakub-sub/header.sh"
+fi
+
+# ---- Source menu.sh ----
+if [ -f "$OMAKUB_PATH/bin/omakub-sub/menu.sh" ]; then
+    source "$OMAKUB_PATH/bin/omakub-sub/menu.sh"
+    log "Sourced menu.sh successfully"
+else
+    log "Warning: menu.sh not found at $OMAKUB_PATH/bin/omakub-sub/menu.sh"
+fi
+
+log "Finished sourcing Omakub scripts"
