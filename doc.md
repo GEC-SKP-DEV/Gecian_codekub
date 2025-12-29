@@ -119,3 +119,7 @@ Once the scripts finish, Codekub configures the desktop:
 * VS Code background, Neovim, btop, Zellij, and top-hat themes included
 * Users can switch themes via the Codekub app
 
+
+the main problem is the boot when using dev branch for checking downlaod the main branch we will losoe so mathc time we realixe itis donwload main branch a
+
+the ascii cannot have ' otherwise it will bash eroror 
