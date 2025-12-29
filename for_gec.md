@@ -10,8 +10,10 @@ sgpa calc app
 exceldraw
 
 fish | zsh ✓| bash 
-ghosstty ✓ vs alacirtty vs kitty 
+ghosstty  vs alacirtty ✓ vs kitty 
 
+change the file of  terminal to gnome terminal 
+alacrity to terminal
 remove tool as 
 
 flameshot  
